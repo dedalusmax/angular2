@@ -1,23 +1,15 @@
 <h2>Sajmovi</h2>
-<div *ngIf="fair">
-   <h3>{{fair.name}} {{fair.location}}</h3>
-   <table class='table'>
-       <tbody>
-           <tr>
-               <td>Id:</td>
-               <td>{{ fair.id }}</td>
-           </tr>
-           <tr>
-               <td>Naziv:</td>
-               <td><input [(ngModel)]="fair.name" /></td>
-           </tr>
-           <tr>
-               <td>Lokacija:</td>
-               <td><input [(ngModel)]="fair.location" /></td>
-           </tr>
-           <tr>
-               <button (click)="gotoFairs()">Povratak</button>
-           </tr>
-       </tbody>
-   </table>
-</div>
+<form *ngIf="fair" #fairForm="ngForm" (ngSubmit)="onSubmit()">
+   <h3>{{fair.name |uppercase }} {{ fair.location }}</h3>
+   <div class='form-group'>
+       <input class='form-control' required [(ngModel)]="fair.name" ngControl="name" />
+   </div>
+   <div class='form-group'>
+       <input class='form-control' required [(ngModel)]="fair.location" ngControl="location" />
+   </div>
+   <div class='form-group'>
+       <input type='text' rcDate class='form-control' [(ngModel)]="fair.fromDate" ngControl="fromDate" />
+   </div>
+   <button class='btn btn-primary' type='submit' [disabled]="!fairForm.form.valid">Potvrdi</button>
+   <button class='btn btn-default'>Odustani</button>
+</form>
