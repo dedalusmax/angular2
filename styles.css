@@ -1,0 +1,31 @@
+body { font-family: Calibri; margin: 2em; }
+
+h1 { color: #448; font-size: 250%; }
+h2 { color: #448; padding: 10px; border-bottom-style: groove; border-bottom-color: #CCE; border-left-width: 20px; border-radius: 12px; }
+h3 { color: #000; font-weight: darker; }
+
+ul { list-style-type: none; padding: 0; width: 20em; }
+li { padding: 5px; cursor: pointer; position: relative; left: 0; transition: all 0.2s ease; color: #FFF; background-color: #448; border-radius: 4px; margin: 2px; }
+li:hover { color: black; background-color: wheat; left: 20px; }
+a { color: white; }
+
+button { 
+    padding: 5px 15px; 
+    color: wheat; 
+    background-color: #448;
+    outline: none;
+    display: block; 
+    border-width: 0;
+    border-radius: 4px; 
+    cursor: pointer;
+    font-size: smaller;
+}
+button:hover { color: black; background-color: wheat; }
+
+.ng-valid[required] {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid {
+  border-left: 5px solid #a94442; /* red */
+}

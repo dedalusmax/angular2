@@ -1,2 +1,2 @@
 # angular2
-Angular2 Startup Application
+Angular2 Bootstrapper Application
