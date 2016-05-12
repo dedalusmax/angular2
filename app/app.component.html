@@ -1,0 +1,6 @@
+<h1>Domaća radinost Kiki Art</h1>
+<ul class='nav nav-pills'>
+   <li [class.active]="isActive(['Toys'])"><a [routerLink]="['Toys']">Igračke</a></li>
+   <li [class.active]="isActive(['Fairs'])"><a [routerLink]="['Fairs']">Sajmovi</a></li>
+</ul>
+<router-outlet></router-outlet>
