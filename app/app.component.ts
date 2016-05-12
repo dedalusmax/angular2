@@ -1,6 +1,7 @@
 import {Component} from 'angular2/core';
 import {ToysComponent} from './toys.component';
 import {FairsComponent} from './fairs.component';
+import {FairDetailComponent} from './fair-detail.component';
 import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 
 @Component({
@@ -10,7 +11,8 @@ import {Router, RouteConfig, ROUTER_DIRECTIVES} from 'angular2/router';
 })
 @RouteConfig([
     { path: '/toys', name: 'Toys', component: ToysComponent },
-    { path: '/fairs', name: 'Fairs', component: FairsComponent }
+    { path: '/fairs', name: 'Fairs', component: FairsComponent },
+    { path: '/fair/:id', name: 'FairDetail', component: FairDetailComponent }   
 ])
 export class AppComponent {
     

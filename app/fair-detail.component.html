@@ -1,0 +1,23 @@
+<h2>Sajmovi</h2>
+<div *ngIf="fair">
+   <h3>{{fair.name}} {{fair.location}}</h3>
+   <table class='table'>
+       <tbody>
+           <tr>
+               <td>Id:</td>
+               <td>{{ fair.id }}</td>
+           </tr>
+           <tr>
+               <td>Naziv:</td>
+               <td><input [(ngModel)]="fair.name" /></td>
+           </tr>
+           <tr>
+               <td>Lokacija:</td>
+               <td><input [(ngModel)]="fair.location" /></td>
+           </tr>
+           <tr>
+               <button (click)="gotoFairs()">Povratak</button>
+           </tr>
+       </tbody>
+   </table>
+</div>

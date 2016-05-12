@@ -14,4 +14,8 @@ export class FairService {
     getFairs() {
         return fairsPromise;
     }
+    
+    getFair(id: number | string) {
+        return fairsPromise.then(fairs => fairs.filter(f => f.id === +id)[0]);
+    }
 }
