@@ -1,5 +1,6 @@
-import { Directive, ElementRef, Input, Output, EventEmitter } from 'angular2/core';
+import { Directive, ElementRef, Input, Output, EventEmitter, OnInit } from 'angular2/core';
 import { NgControl } from 'angular2/common';
+import { Observable } from 'rxjs/Rx';
 
 @Directive({
     selector: "[rcDate]",
@@ -7,7 +8,7 @@ import { NgControl } from 'angular2/common';
         '(change)': 'onChange($event.target.value)'
     }
 })
-export class DateDirective {
+export class DateDirective implements OnInit {
       
     colors = {
         init: '#AABBFF',
@@ -15,15 +16,15 @@ export class DateDirective {
         invalid: '#FFCCDD'   
     };
     
-    private _date: string;
-    
-    @Input() set date(value: string) {
-        console.log('@Input set to: ' + value);
-        this._date = value; 
-    }
-   
+    @Input() inputValue: string;
+
     constructor(private element: ElementRef, private control: NgControl) {
         element.nativeElement.style.backgroundColor = this.colors.init;
+    }
+    
+    ngOnInit() {
+        const eventStream = Observable.fromEvent(this.element.nativeElement, 'change')
+            .map(() => this.inputValue );
     }
     
     private toDateString(date: Date): string {
@@ -44,18 +45,19 @@ export class DateDirective {
     } 
     
     onChange(value: string): void {
+        console.log('onChange: ' + value);
         
-        if (value != this._date) {
-            var parsedDate = this.parseDateString(value);
-            if (parsedDate.toString() === 'Invalid Date') {
-                this.control.valueAccessor.writeValue('Pogrešan datum!'); 
-                this.element.nativeElement.style.backgroundColor = this.colors.invalid;
-            } else {
-                var newValue = this.toDateString(parsedDate); 
-                this.control.valueAccessor.writeValue(newValue);
-                this.control.viewToModelUpdate(newValue);
-                this.element.nativeElement.style.backgroundColor = this.colors.valid;
-            }
+        var parsedDate = this.parseDateString(value);
+        if (parsedDate.toString() === 'Invalid Date') {
+            var newValue = 'Pogrešan datum!'; 
+            this.control.valueAccessor.writeValue(newValue); 
+            this.control.viewToModelUpdate(newValue);
+            this.element.nativeElement.style.backgroundColor = this.colors.invalid;
+        } else {
+            var newValue = this.toDateString(parsedDate); 
+            this.control.valueAccessor.writeValue(newValue);
+            this.control.viewToModelUpdate(newValue);
+            this.element.nativeElement.style.backgroundColor = this.colors.valid;
         }
     }       
 }

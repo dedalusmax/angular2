@@ -1,6 +1,6 @@
 <h2>Sajmovi</h2>
 <form *ngIf="fair" #fairForm="ngForm" (ngSubmit)="onSubmit()">
-   <h3>{{fair.name |uppercase }} {{ fair.location }}</h3>
+   <h3>{{fair.name | uppercase }} {{ fair.fromDate }}</h3>
    <div class='form-group'>
        <input class='form-control' required [(ngModel)]="fair.name" ngControl="name" />
    </div>
